@@ -20,7 +20,6 @@ public interface SampleBuffers {
     /**
      * @return number of input samples available
      */
-
     int getInputBufferLength();
 
     /**

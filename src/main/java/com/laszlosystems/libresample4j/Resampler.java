@@ -361,7 +361,6 @@ public class Resampler {
     }
 
 
-
     /*
      * Sampling rate up-conversion only subroutine; Slightly faster than
      * down-conversion;

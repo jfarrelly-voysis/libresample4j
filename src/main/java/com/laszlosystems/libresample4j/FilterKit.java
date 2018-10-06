@@ -16,7 +16,7 @@ package com.laszlosystems.libresample4j;
  * This file provides Kaiser-windowed low-pass filter support,
  * including a function to create the filter coefficients, and
  * two functions to apply the filter at a particular point.
- * 
+ *
  * <pre>
  * reference: "Digital Filters, 2nd edition"
  *            R.W. Hamming, pp. 178-179
@@ -97,30 +97,30 @@ public class FilterKit {
         for (i = 1; i < N; i++) {
             temp = (double) i * inm1;
             temp1 = 1.0 - temp * temp;
-            temp1 = (temp1 < 0 ? 0 : temp1); /*
-                                              * make sure it's not negative
-                                              * since we're taking the square
-                                              * root - this happens on Pentium
-                                              * 4's due to tiny roundoff errors
-                                              */
+            temp1 = (temp1 < 0 ? 0 : temp1);
+            /*
+             * make sure it's not negative
+             * since we're taking the square
+             * root - this happens on Pentium
+             * 4's due to tiny roundoff errors
+             */
             c[i] *= Izero(Beta * Math.sqrt(temp1)) * IBeta;
         }
     }
 
     /**
-     * 
-     * @param Imp impulse response
-     * @param ImpD impulse response deltas
-     * @param Nwing length of one wing of filter
-     * @param Interp Interpolate coefs using deltas?
+     * @param Imp      impulse response
+     * @param ImpD     impulse response deltas
+     * @param Nwing    length of one wing of filter
+     * @param Interp   Interpolate coefs using deltas?
      * @param Xp_array Current sample array
      * @param Xp_index Current sample index
-     * @param Ph Phase
-     * @param Inc increment (1 for right wing or -1 for left)
+     * @param Ph       Phase
+     * @param Inc      increment (1 for right wing or -1 for left)
      * @return
      */
     public static float lrsFilterUp(float Imp[], float ImpD[], int Nwing, boolean Interp, float[] Xp_array, int Xp_index, double Ph,
-            int Inc) {
+                                    int Inc) {
         double a = 0;
         float v, t;
 
@@ -176,20 +176,19 @@ public class FilterKit {
     }
 
     /**
-     * 
-     * @param Imp impulse response
-     * @param ImpD impulse response deltas
-     * @param Nwing length of one wing of filter
-     * @param Interp Interpolate coefs using deltas?
+     * @param Imp      impulse response
+     * @param ImpD     impulse response deltas
+     * @param Nwing    length of one wing of filter
+     * @param Interp   Interpolate coefs using deltas?
      * @param Xp_array Current sample array
      * @param Xp_index Current sample index
-     * @param Ph Phase
-     * @param Inc increment (1 for right wing or -1 for left)
-     * @param dhb filter sampling period
+     * @param Ph       Phase
+     * @param Inc      increment (1 for right wing or -1 for left)
+     * @param dhb      filter sampling period
      * @return
      */
     public static float lrsFilterUD(float Imp[], float ImpD[], int Nwing, boolean Interp, float[] Xp_array, int Xp_index, double Ph,
-            int Inc, double dhb) {
+                                    int Inc, double dhb) {
         float a;
         float v, t;
         double Ho;
@@ -219,7 +218,7 @@ public class FilterKit {
                 t = Hp_array[Hp_index]; // Get IR sample
                 Hdp_index = (int) Ho; // get interp bits from diff table
                 a = (float) (Ho - Math.floor(Ho)); // a is logically between 0
-                                                   // and 1
+                // and 1
                 t += Hdp_array[Hdp_index] * a; // t is now interp'd filter coeff
                 t *= Xp_array[Xp_index]; // Mult coeff by input sample
                 v += t; // The filter output
