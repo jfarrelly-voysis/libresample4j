@@ -101,7 +101,7 @@ public class ResamplerTest {
         printf("\n*** Resample with different factors ***\n\n");
         srclen = 10000;
         ifreq = 100;
-        for (i = 0; i < 100; i++) {
+        while (true) {
             factor = ((rand() % 64) + 1) / 4.0;
             dstlen = (int) (srclen * factor + 10);
             runtest(srclen, (double) ifreq, factor, srclen, dstlen);
